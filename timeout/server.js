@@ -1,7 +1,7 @@
-// test this node with bash for ((i=1;i<=100;i++)); do   curl -v "localhost:8080" --connect-timeout 1; done
 const http = require('http');
 const https = require('https');
 
+let incomingRequest = 0;
 const array = [];
 
 function getRandomInt(min, max) {
@@ -19,7 +19,7 @@ function callApi() {
   https.get('https://jsonplaceholder.typicode.com/todos/1', (res) => {
     const { statusCode } = res;
 
-    console.log(statusCode);
+    console.log("API Call Status Code: ", statusCode);
 
     if (statusCode !== 200) {
       console.log('Error call API!');
@@ -42,6 +42,8 @@ function callApi() {
 //create a server object:
 http
   .createServer(function(req, res) {
+    incomingRequest +=1;
+    console.log("Total Request: ", incomingRequest);
     callApi();
     setInterval(() => {
       const rand = Math.random();
@@ -49,7 +51,7 @@ http
       console.log(rand, ' & ', fiboz);
       array.push(rand);
 
-      if (array.length === 1000000) {
+      if (array.length === 10000000000) {
         array = [];
       }
     }, 1000);
