@@ -48,6 +48,10 @@ http
       const fiboz = fibo(getRandomInt(0, 10));
       console.log(rand, ' & ', fiboz);
       array.push(rand);
+
+      if (array.length === 1000000) {
+        array = [];
+      }
     }, 1000);
 
     setTimeout(() => {
