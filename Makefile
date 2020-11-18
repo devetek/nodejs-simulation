@@ -1,6 +1,8 @@
+SHELL := /bin/bash
+
 run-dev:
 	@node timeout/server.js
-	
+
 timeout-test-with:
 	( \
 		for ((i=1;i<=100;i++)); \
